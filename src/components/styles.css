@@ -18,8 +18,19 @@
     gap: 5px;
     text-decoration: none;
 }
-#home-profile-btn{
+#home-containter{
     display: flex;
     justify-content: center;
     align-items: center;
 }
+#btn-container{
+    display: flex;
+    justify-content: center;
+}
+
+#home-profile-btn{
+    font-size: 20px;
+    background-color: rgb(29, 162, 71);
+    color: white
+}
+
