@@ -3,6 +3,7 @@ import { Link, Route, Switch, NavLink } from "react-router-dom";
 import Posts from "./Posts";
 import Login from "./Login";
 import Profile from "./Profile"
+import Register from "./Register";
 import './styles.css'
 
 
@@ -17,16 +18,17 @@ const App = () => {
                 <h1 id="title">Strangers Things</h1>
             </Link>
             <div id="links" >
-                <NavLink to="/home" activeClassName = "active">Home</NavLink> |  
-                <NavLink to="/posts" activeClassName = "active">Posts</NavLink> |
-                <NavLink to="/profile" activeClassName = "active">Profile</NavLink> |
-                <NavLink to="/login" activeClassName = "active">Log In</NavLink> |
-                <NavLink to="/logout" activeClassName = "active">Log Out</NavLink> 
+                <NavLink to="/home" className= "navlink" activeClassName = "active">Home</NavLink> |  
+                <NavLink to="/posts" className= "navlink" activeClassName = "active">Posts</NavLink> |
+                <NavLink to="/profile" className= "navlink" activeClassName = "active">Profile</NavLink> |
+                <NavLink to="/login" className= "navlink" activeClassName = "active">Log In</NavLink> 
             </div>
         </nav>
 
         <Route exact path ="/">
             <Login />
+            <Register />
+            
         </Route>
 
         <Switch>

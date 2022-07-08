@@ -1,7 +1,8 @@
 import React, {useState} from "react";
 const Login = () =>{
-    const[userName, setUserName] = useState('');
-    const[password, setPassword] = useState('')
+    const [userName, setUserName] = useState('');
+    const [password, setPassword] = useState('');
+
 
     const handleChangeUser = (event) => {
         setUserName(event.target.value)
@@ -19,14 +20,14 @@ const Login = () =>{
 
 
     return <>
-    <div>Login</div>
-        <div id='container'>
-            <form id="form" onSubmit={handleSubmit}>
+    <h1 id="login">Login</h1>
+        <div id='form-container'>
+            <form id="login-form" onSubmit={handleSubmit}>
                 <label htmlFor="Username">Username:</label>
-                <input type="text" name="username" value={userName} onChange={handleChangeUser} />
+                <input type="text" name="username" value={userName} onChange={handleChangeUser} required />
                 <label htmlFor="Password">Password:</label>
-                <input type="text" name="password" value={password} onChange={handleChangePassword}/>
-                <button type="submit">LOG IN</button>
+                <input className="password" type="text" name="password" value={password} onChange={handleChangePassword}required />
+                <button className="clientButton" type="submit">LOG IN</button>
 
             </form> 
         </div>  

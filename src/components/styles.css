@@ -34,3 +34,65 @@
     color: white
 }
 
+#post-card{
+    border: solid black 2px;
+    margin-top: 10px;
+    padding-bottom: 20px 
+}
+
+#form-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: solid black 2px;
+    font-size: 30px;
+}
+
+.navlink {
+    text-decoration: none;
+    color: black
+}
+
+.navlink.active {
+    text-decoration: underline;
+    color: red;
+    font-size: 20px
+
+}
+
+.navlink:hover{
+    text-decoration: underline;
+}
+
+#login {
+    display: flex;
+    justify-content: center;
+}
+
+#register {
+    display: flex;
+    justify-content: center;
+}
+
+#login-form{
+    display: flex;
+    flex-direction: column;
+}
+#register-form{
+    display: flex;
+    flex-direction: column;
+}
+
+input{
+    font-size: 20px;
+}
+
+.password{
+    margin-bottom: 15px;
+}
+
+.clientButton{
+    color:rgb(72, 245, 98);
+    font-size: 20px;
+    background-color: rgb(94, 95, 93);
+}

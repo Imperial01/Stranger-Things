@@ -1,40 +1,59 @@
-import {React, useEffect, useState } from "react";
+import { React, useEffect, useState } from "react";
+import { fetchAllPost } from "../utility/api";
 
-const cohortName = '2204-FTB-MT-WEB-PT'
-const APIURL = `https://strangers-things.herokuapp.com/api/${cohortName}/`
-
+const cohortName = "2204-FTB-MT-WEB-PT";
+const APIURL = `https://strangers-things.herokuapp.com/api/${cohortName}/`;
 
 const Posts = () => {
-    const [posts, setPosts] = useState([])
-    console.log(posts)
-    
-    const fetchPost = async () => {
-        const response = await fetch(`${APIURL}/posts`)
-        const data = await response.json();
-        setPosts(data);
-        
+  const [posts, setPosts] = useState([]);
+  const [search, setSearch] = useState('');
 
-        console.log(setPosts(data))
-    }
+  const post = async () => {
+    setPosts(await fetchAllPost())
+  }
 
-    useEffect(() => {
-        fetchPost();
-    }, [])
+  useEffect(() => {
+    post();
+  }, []);
 
 
-    return <>
-        <h1>Posts</h1>
-        {
-        posts.map(post => {
-            console.log(post)
-            return <div> {post}</div>
-        })
-    }
-        
-        
-    </>
-    
-}
+  const handleSearch= (event) => {
+    setSearch(event.target.value)
+  }
 
+  const handleSubmit = (event) => {
+    event.preventDefault();
+  }
 
-export default Posts
+  return (
+    <div>
+        <form onSubmit={handleSubmit}>
+            <input type="text" name="search" placeholder="Search Post" value={search} onChange={handleSearch}></input>
+        </form>
+      {
+      posts.filter(post => {
+        return `${post.title} ${post.description}`
+            .toLowerCase()
+            .includes(search.toLowerCase())
+      }).map((post) => {
+        return (
+          <div id="post-card">
+            <h1>{post.title}</h1>
+            <p>{post.description}</p>
+            <div>
+              <b>Price:</b> {post.price}
+            </div>
+            <div>
+              <b>Seller:</b> {post.author.username}
+            </div>
+            <div>
+              <b>Location:</b> {post.location}
+            </div>
+          </div>
+        );
+      })}
+    </div>
+  );
+};
+
+export default Posts;
