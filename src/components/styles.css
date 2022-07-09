@@ -82,7 +82,9 @@
     display: flex;
     flex-direction: column;
 }
-
+label {
+    font-size: 20px;
+}
 input{
     font-size: 20px;
 }
@@ -92,7 +94,7 @@ input{
 }
 
 .clientButton{
-    color:rgb(72, 245, 98);
-    font-size: 20px;
-    background-color: rgb(94, 95, 93);
+    color: #FFFFFF;
+    font-size: 15px;
+    background-color:rgb(12, 150, 255);
 }

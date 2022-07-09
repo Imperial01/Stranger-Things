@@ -16,6 +16,7 @@ const Login = () =>{
         event.preventDefault();
         setUserName('')
         setPassword('')
+        console.log(userName, password)
     }
 
 
@@ -23,9 +24,9 @@ const Login = () =>{
     <h1 id="login">Login</h1>
         <div id='form-container'>
             <form id="login-form" onSubmit={handleSubmit}>
-                <label htmlFor="Username">Username:</label>
+                <label htmlFor="Username">Username</label>
                 <input type="text" name="username" value={userName} onChange={handleChangeUser} required />
-                <label htmlFor="Password">Password:</label>
+                <label htmlFor="Password">Password</label>
                 <input className="password" type="text" name="password" value={password} onChange={handleChangePassword}required />
                 <button className="clientButton" type="submit">LOG IN</button>
 
