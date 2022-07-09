@@ -98,3 +98,8 @@ input{
     font-size: 15px;
     background-color:rgb(12, 150, 255);
 }
+
+#activeAccount {
+    display: flex;
+    justify-content: center;
+}

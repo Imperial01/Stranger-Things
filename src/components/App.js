@@ -8,7 +8,7 @@ import './styles.css'
 
 
 const App = () => {
-    // const[user, setUser] = useState({})
+    //const[user, setUser] = useState({})
     const [posts, setPosts] = useState([])
     const [token, setToken] = useState('')
 
@@ -44,6 +44,7 @@ const App = () => {
             </Route>
             <Route exact path="/profile">
                 <Profile />
+                {/* token={setToken} */}
             </Route>
             <Route exact path="/login"><Login /></Route>
             <Route exact path="/posts"><Posts /> </Route> 

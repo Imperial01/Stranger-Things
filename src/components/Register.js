@@ -1,51 +1,71 @@
-import React, {useEffect, useState} from "react";
+import React, { useState } from "react";
 import { fetchRegister } from "../utility/api";
+//{user, setUser, token, setToken};
 
 const Register = () => {
-    const [userName, setUserName] = useState('');
-    const [password, setPassword] = useState('');
+  const [userName, setUserName] = useState('');
+  const [password, setPassword] = useState('');
+  //const [user, setUser] = useState([]);
+  const [token, setToken] = useState('');
 
-    const handleChangeUser = (event) => {
-            setUserName(event.target.value)
-        }
-    
-    const handleChangePassword = (event) => {
-            setPassword(event.target.value)
-        }
-    
-    const handleSubmit = (event) =>{
-            event.preventDefault();
-            setUserName('')
-            setPassword('')
-    }
+  const handleChangeUser = (event) => {
+    setUserName(event.target.value);
+  };
 
-    useEffect(() => { // added useEffect function in submit()?
-        fetchRegister();
-    }),[];
+  const handleChangePassword = (event) => {
+    setPassword(event.target.value);
+  };
 
-    //I want the input value of username set as my user.username
-    //I want the input value of password set as my user.password
-    //Is my destructure correct on ./api? (destructuring ${userName} and ${password})
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    const registeredToken = await fetchRegister(userName, password); //returning a token
+    setToken(registeredToken); // storing the token in setToken as a string
+    console.log(userName, password);
+    setUserName('');
+    setPassword('');
+    console.log(token)
+  };
 
+  // when I log in, the token will match the token from <Login />.
 
+  return (
+    <>
+      {token ? 
+        <>
+        <h1 id= "activeAccount"> Thank you for Signing up</h1>
+        <p id= "activeAccount" style={{fontSize: "20px"}}>Please Log In</p>
+        </>
+       : 
+        <>
+          <h1 id="register">Sign up</h1>
+          <div id="form-container">
+            <form id="register-form" onSubmit={handleSubmit}>
+              <label htmlFor="Username">Username</label>
+              <input
+                type="text"
+                name="username"
+                value={userName}
+                onChange={handleChangeUser}
+                required
+              />
+              <label htmlFor="Password">Password</label>
+              <input
+                className="password"
+                type="password"
+                name="password"
+                value={password}
+                onChange={handleChangePassword}
+                required
+              />
+              <button className="clientButton" type="submit">
+                SIGN UP
+              </button>
+            </form>
+          </div>
+        </>
+      }
+    </>
+  );
+};
 
-    return (
-        <div >
-             <h1 id= "register">Sign up</h1>
-            <div id='form-container'>
-                <form id="register-form" onSubmit={handleSubmit}>
-                    <label htmlFor="Username">Username</label>
-                    <input type="text" name="username" value={userName} onChange={handleChangeUser} required />
-                    <label htmlFor="Password">Password</label>
-                    <input className="password" type="text" name="password" value={password} onChange={handleChangePassword}required />
-                    <button className="clientButton" type="submit">SIGN UP</button>
-                </form> 
-            </div>  
-
-        </div>
-       
-    )
-
-}
-
-export default Register
+export default Register;

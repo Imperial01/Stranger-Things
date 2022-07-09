@@ -8,27 +8,57 @@ export const fetchAllPost = async () => {
   };
 
 
-export const fetchRegister = async ({userName}, {password}) => {
-  fetch(`${APIURL}/users/register`, {
+export const fetchRegister = async (userName, password) => {
+  const response = await fetch(`${APIURL}users/register`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json'
     },
     body: JSON.stringify({
       user: {
-        username: 'superman27',
-        password: 'krypt0n0rbust'
-
-    //Example user.username, user.password only working and giving a token. 
-        // Tried my username: "Adrian" and password:"12321"
-        // 'error:
-                //message: "User already exists, please login instead."
-                //name: "UserExists" '
+        username: userName,
+        password: password
       }
     })
-  }).then(response => response.json())
-    .then(result => {
-      console.log(result)
-    })
-    .catch(console.error)
+    
+  })
+  const result = await response.json();
+  console.log(result.data.token)
+  return (result.data.token)
 }
+
+  // .then(response => response.json())
+  //   .then(result => {
+  //     console.log(result.data.token)
+  //     return (result.data.token)
+  //   })
+  //   .catch(console.error)
+
+
+
+export const fetchLogin = async (userName, password) => {
+  const response = await fetch(`${APIURL}users/login`, {
+    method: "POST",
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({
+      user: {
+        username: userName,
+        password: password 
+      }
+    })
+  })
+
+  const result = await response.json()
+  console.log(result)
+  return result
+  
+}
+  
+//   .then (response => response.json())
+//     .then(result => {
+//       console.log(result)
+//     })
+//     .catch(console.error) 
+// }

@@ -1,7 +1,9 @@
 import React, {useState} from "react";
+import { fetchLogin } from "../utility/api";
 const Login = () =>{
     const [userName, setUserName] = useState('');
     const [password, setPassword] = useState('');
+    const [loginUser, setloginUser] = useState('')
 
 
     const handleChangeUser = (event) => {
@@ -12,11 +14,15 @@ const Login = () =>{
         setPassword(event.target.value)
     }
 
-    const handleSubmit = (event) =>{
+    const handleSubmit = async (event) =>{
         event.preventDefault();
+        const loggedUser = await fetchLogin(userName,password) // fetching login token
+        setloginUser(loggedUser)
+        console.log(loginUser)
+        console.log(loggedUser)
+        console.log(userName, password)
         setUserName('')
         setPassword('')
-        console.log(userName, password)
     }
 
 
