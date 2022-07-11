@@ -103,3 +103,28 @@ input{
     display: flex;
     justify-content: center;
 }
+
+#postNav{
+    display: flex;
+    justify-content: space-between;
+}
+#createPost{
+    border: solid black 2px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 350px;
+    padding: 1%;
+    margin-top: 10%;
+    margin-left: 33%;
+}
+
+#form-submit{
+    margin-top: 10px;
+    font-size: 20px;
+    background-color:rgb(12, 150, 255);
+    color: #FFFFFF;
+    
+
+}

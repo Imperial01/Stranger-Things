@@ -1,8 +1,14 @@
 import { React, useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import { fetchAllPost } from "../utility/api";
 
 const cohortName = "2204-FTB-MT-WEB-PT";
 const APIURL = `https://strangers-things.herokuapp.com/api/${cohortName}/`;
+
+//i need a form that will let me create a post (i MUST be AUTHORIZED/Registered)
+// have a button on my created post that will let me delete a post IF i am registered
+
+// on a different user post, I need a message BUTTON
 
 const Posts = () => {
   const [posts, setPosts] = useState([]);
@@ -27,9 +33,11 @@ const Posts = () => {
 
   return (
     <div>
-        <form onSubmit={handleSubmit}>
+          <form id="postNav" onSubmit={handleSubmit}>
             <input type="text" name="search" placeholder="Search Post" value={search} onChange={handleSearch}></input>
+            <Link to="/createform">Create a Post</Link>
         </form>
+        
       {
       posts.filter(post => {
         return `${post.title} ${post.description}`

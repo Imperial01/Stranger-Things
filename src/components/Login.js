@@ -24,7 +24,7 @@ const Login = () =>{
         setUserName('')
         setPassword('')
     }
-
+// once i log in, I want my username to show and a create a button that sends me to my profile. 
 
     return <>
     <h1 id="login">Login</h1>

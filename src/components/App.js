@@ -4,6 +4,7 @@ import Posts from "./Posts";
 import Login from "./Login";
 import Profile from "./Profile"
 import Register from "./Register";
+import Form from "./Form";
 import './styles.css'
 
 
@@ -50,6 +51,7 @@ const App = () => {
             <Route exact path="/posts"><Posts /> </Route> 
             <Route exact path= "/register"><div>register</div></Route>
             <Route exact path= "/logout"><div>logout</div></Route>
+            <Route exact path="/createform"><Form/></Route>
         </Switch>
 
     </main>
