@@ -1,12 +1,12 @@
 import React, { useState } from "react";
 import { fetchRegister } from "../utility/api";
-//{user, setUser, token, setToken};
 
-const Register = () => {
+const Register = ({token, setToken}) => {
   const [userName, setUserName] = useState('');
   const [password, setPassword] = useState('');
+  const [isRegistered, setIsRegistered] = useState(false)
+  
   //const [user, setUser] = useState([]);
-  const [token, setToken] = useState('');
 
   const handleChangeUser = (event) => {
     setUserName(event.target.value);
@@ -20,9 +20,8 @@ const Register = () => {
     event.preventDefault();
     const registeredToken = await fetchRegister(userName, password); //returning a token
     setToken(registeredToken); // storing the token in setToken as a string
+    setIsRegistered(true)
     console.log(userName, password);
-    setUserName('');
-    setPassword('');
     console.log(token)
   };
 
@@ -30,15 +29,14 @@ const Register = () => {
 
   return (
     <>
-      {token ? 
+      {isRegistered ? 
         <>
         <h1 id= "activeAccount"> Thank you for Signing up</h1>
-        <p id= "activeAccount" style={{fontSize: "20px"}}>Please Log In</p>
         </>
        : 
         <>
           <h1 id="register">Sign up</h1>
-          <div id="form-container">
+          <div id="signup-container">
             <form id="register-form" onSubmit={handleSubmit}>
               <label htmlFor="Username">Username</label>
               <input

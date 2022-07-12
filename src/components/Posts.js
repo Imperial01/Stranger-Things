@@ -10,9 +10,15 @@ const APIURL = `https://strangers-things.herokuapp.com/api/${cohortName}/`;
 
 // on a different user post, I need a message BUTTON
 
-const Posts = () => {
-  const [posts, setPosts] = useState([]);
+const Posts = (props) => {
+  const {posts, setPosts} = props
   const [search, setSearch] = useState('');
+  const {
+    title,
+    description,
+    price,
+    location
+  } = props
 
   const post = async () => {
     setPosts(await fetchAllPost())
@@ -35,12 +41,13 @@ const Posts = () => {
     <div>
           <form id="postNav" onSubmit={handleSubmit}>
             <input type="text" name="search" placeholder="Search Post" value={search} onChange={handleSearch}></input>
-            <Link to="/createform">Create a Post</Link>
+            <Link to="/createform" style={{fontSize: "25px"}}>Create a Post</Link>
         </form>
         
       {
       posts.filter(post => {
         return `${post.title} ${post.description}`
+        //After creating a post, I can't see my Posts because of a TypeError "Cannot read properties of undefined (reading "title") Post.js line 49:1
             .toLowerCase()
             .includes(search.toLowerCase())
       }).map((post) => {

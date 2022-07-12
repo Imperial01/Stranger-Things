@@ -1,15 +1,19 @@
 import React, { useState } from "react";
+import { fetchCreateForm } from "../utility/api";
 
-const Form = () => {
+const Form = ({token, posts, setPosts}) => {
     const [title, setTitle] = useState('')
     const [description, setdescription] = useState('')
     const [price, setprice] = useState('')
     const [location, setlocation] = useState('')
+    
 
-    const handleSubmit = (event) => {
+    const handleSubmit = async (event) => {
         event.preventDefault();
         console.log("works")
         console.log(title,description,price,location)
+        const createForm = await fetchCreateForm(token,title,description,price,location)
+        setPosts([createForm, ...posts])
     }
     return (
         <div id="create-containter">

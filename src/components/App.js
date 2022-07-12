@@ -26,13 +26,15 @@ const App = () => {
             </div>
         </nav>
 
-        <Route exact path ="/">
-            <Login />
-            <Register />
-            
-        </Route>
-
+    
         <Switch>
+            <Route exact path ="/"><Register token = {token} setToken = {setToken}/></Route>
+            <Route path="/login"><Login token = {token} setToken = {setToken}/></Route>
+            <Route exact path="/posts"><Posts posts = {posts} setPosts= {setPosts}/> </Route> 
+            <Route exact path="/createform"><Form token = {token} setToken= {setToken} posts = {posts} setPosts = {setPosts} /></Route>
+            <Route exact path= "/logout"><div>logout</div></Route>
+
+
             <Route  exact path="/home"> 
                 <div id="home-container">
                     <h1 id="home-title">Welcome to Stranger Things </h1>
@@ -47,11 +49,6 @@ const App = () => {
                 <Profile />
                 {/* token={setToken} */}
             </Route>
-            <Route exact path="/login"><Login /></Route>
-            <Route exact path="/posts"><Posts /> </Route> 
-            <Route exact path= "/register"><div>register</div></Route>
-            <Route exact path= "/logout"><div>logout</div></Route>
-            <Route exact path="/createform"><Form/></Route>
         </Switch>
 
     </main>

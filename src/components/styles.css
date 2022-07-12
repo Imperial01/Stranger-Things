@@ -46,6 +46,19 @@
     align-items: center;
     border: solid black 2px;
     font-size: 30px;
+    width: 500px;
+    margin-left: 500px;
+    padding-top: 20px;
+}
+
+#signup-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: solid black 2px;
+    width: 500px;
+    height: 200px;
+    margin-left: 33.33%;
 }
 
 .navlink {
@@ -98,6 +111,12 @@ input{
     font-size: 15px;
     background-color:rgb(12, 150, 255);
 }
+#signup-Button{
+    color: #FFFFFF;
+    font-size: 15px;
+    background-color:rgb(12, 150, 255);
+    
+}
 
 #activeAccount {
     display: flex;
@@ -116,8 +135,8 @@ input{
     align-items: center;
     width: 350px;
     padding: 1%;
-    margin-top: 10%;
-    margin-left: 33%;
+    margin-top: 2%;
+    margin-left: 37%;
 }
 
 #form-submit{
@@ -125,6 +144,24 @@ input{
     font-size: 20px;
     background-color:rgb(12, 150, 255);
     color: #FFFFFF;
-    
-
 }
+
+#link-btn{
+    display: flex;
+    justify-content: center;
+    text-decoration: none;
+    margin-top: 5px;
+}
+#signup-Button{
+    display: flex;
+    padding-left: 90px;
+    padding-right: 90px;
+    font-size: 25px;
+    margin-bottom: 30px;
+}
+#login-break{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
