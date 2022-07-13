@@ -1,19 +1,24 @@
 import React, { useState } from "react";
 import { fetchCreateForm } from "../utility/api";
 
-const Form = ({token, posts, setPosts}) => {
+const Form = ({token, posts, setPosts, postID, setPostID}) => {
     const [title, setTitle] = useState('')
     const [description, setdescription] = useState('')
     const [price, setprice] = useState('')
     const [location, setlocation] = useState('')
-    
 
     const handleSubmit = async (event) => {
         event.preventDefault();
-        console.log("works")
         console.log(title,description,price,location)
-        const createForm = await fetchCreateForm(token,title,description,price,location)
-        setPosts([createForm, ...posts])
+        if(token){
+            const createForm = await fetchCreateForm(token,title,description,price,location)
+            setPosts([createForm, ...posts])
+            console.log(createForm.author._id)
+            setPostID(createForm.author._id)
+            console.log(postID) // this is working.
+        } else {
+            alert("Please Login")
+        }
     }
     return (
         <div id="create-containter">
@@ -31,6 +36,7 @@ const Form = ({token, posts, setPosts}) => {
             <label>Location:</label>
             <input type="text" placeholder="Enter a Location" value={location} onChange={(event)=> setlocation(event.target.value)}></input>
             <button id="form-submit" type="submit" onClick={handleSubmit}>Submit</button>
+
         </form>  
         </div>
         

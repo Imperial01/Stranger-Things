@@ -21,7 +21,6 @@ const Login = ({ token, setToken }) => {
     setToken(loggedToken);
     setUserName(userName);
     setIsLoggedin(true)
-    console.log(token);
 
   };
   // once i log in, I want my username to show and a create a button that sends me to my profile.

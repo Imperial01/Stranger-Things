@@ -25,7 +25,8 @@ export const fetchCreateForm = async (token, title, description, price, location
     })
   })
   const result = await response.json();
-  console.log(result)
+  console.log(result.data.post)
+  return result.data.post 
 
 }
 
@@ -44,7 +45,6 @@ export const fetchRegister = async (userName, password) => {
     
   })
   const result = await response.json();
-  console.log(result.data.token)
   return (result.data.token)
 }
 
@@ -74,12 +74,17 @@ export const fetchLogin = async (userName, password) => {
   const result = await response.json()
   console.log(result.data.token)
   return result.data.token
-  
 }
-  
-//   .then (response => response.json())
-//     .then(result => {
-//       console.log(result)
-//     })
-//     .catch(console.error) 
-// }
+
+export const fetchDelete = async(postID, token) => {
+  const response = await fetch(`${APIURL}/posts/${postID}`, {
+    method: "DELETE",
+    headers: {
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${token}`
+    }
+  })
+  const result = await response.json()
+  console.log(result)
+  return result
+}

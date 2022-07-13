@@ -1,25 +1,15 @@
 import { React, useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import { fetchAllPost } from "../utility/api";
 
-const cohortName = "2204-FTB-MT-WEB-PT";
-const APIURL = `https://strangers-things.herokuapp.com/api/${cohortName}/`;
-
-//i need a form that will let me create a post (i MUST be AUTHORIZED/Registered)
-// have a button on my created post that will let me delete a post IF i am registered
-
-// on a different user post, I need a message BUTTON
-
 const Posts = (props) => {
-  const {posts, setPosts} = props
   const [search, setSearch] = useState('');
   const {
-    title,
-    description,
-    price,
-    location
-  } = props
-
+    posts, setPosts, 
+    postID, setPostID, token, 
+    featuredPost, setFeaturedPost} = props
+    
+  const history = useHistory();
   const post = async () => {
     setPosts(await fetchAllPost())
   }
@@ -37,22 +27,59 @@ const Posts = (props) => {
     event.preventDefault();
   }
 
+  const handleClick = () => {
+    token ? history.push('/createform') :
+    alert("Please Login")
+  }
+
+  // const handleDelete = async () => {
+  //   const deletePost = await fetchDelete(postID,token);
+  //   console.log(postID)
+  //   let id = posts.map(post => {
+  //     return post._id
+  //   })
+  //   console.log(id)
+  //   return deletePost
+  // }
+  //   //error:
+  //   //message: "that route does not exist"
+  //   //name: "UndefinedRoute"
+
+
+
+  const handleFeaturedPost = (event, post) => {
+    // grab that post and display on screen
+    console.log("test")
+    if(token){
+      setFeaturedPost(post);
+      history.push(`/posts/${post._id}`)
+    }else{
+      alert("please Login")
+    }
+      
+    // change the URL path to ${APIURL}/post/postID
+  }
+
   return (
     <div>
           <form id="postNav" onSubmit={handleSubmit}>
             <input type="text" name="search" placeholder="Search Post" value={search} onChange={handleSearch}></input>
-            <Link to="/createform" style={{fontSize: "25px"}}>Create a Post</Link>
+            <button style={{fontSize: "15px"}} onClick = {handleClick}>Create a Post +</button>
         </form>
         
       {
       posts.filter(post => {
+        
         return `${post.title} ${post.description}`
         //After creating a post, I can't see my Posts because of a TypeError "Cannot read properties of undefined (reading "title") Post.js line 49:1
             .toLowerCase()
             .includes(search.toLowerCase())
       }).map((post) => {
         return (
-          <div id="post-card">
+        <>
+          <div id="post-card" onClick={(event) => {
+            {handleFeaturedPost(event, post)}
+          }}>
             <h1>{post.title}</h1>
             <p>{post.description}</p>
             <div>
@@ -64,7 +91,10 @@ const Posts = (props) => {
             <div>
               <b>Location:</b> {post.location}
             </div>
+            <br></br>
+            {/* <button onClick={handleDelete}>Delete</button> */}
           </div>
+        </>  
         );
       })}
     </div>

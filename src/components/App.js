@@ -5,6 +5,7 @@ import Login from "./Login";
 import Profile from "./Profile"
 import Register from "./Register";
 import Form from "./Form";
+import FeaturedPost from "./FeaturedPost";
 import './styles.css'
 
 
@@ -12,6 +13,8 @@ const App = () => {
     //const[user, setUser] = useState({})
     const [posts, setPosts] = useState([])
     const [token, setToken] = useState('')
+    const [postID, setPostID] = useState(null)
+    const [featuredPost, setFeaturedPost] = useState(false)
 
     return <main> 
         <nav id ="navbar">
@@ -28,12 +31,36 @@ const App = () => {
 
     
         <Switch>
-            <Route exact path ="/"><Register token = {token} setToken = {setToken}/></Route>
-            <Route path="/login"><Login token = {token} setToken = {setToken}/></Route>
-            <Route exact path="/posts"><Posts posts = {posts} setPosts= {setPosts}/> </Route> 
-            <Route exact path="/createform"><Form token = {token} setToken= {setToken} posts = {posts} setPosts = {setPosts} /></Route>
-            <Route exact path= "/logout"><div>logout</div></Route>
+            <Route exact path ="/">
+                <Register token = {token} setToken = {setToken}/>
+            </Route>
 
+            <Route path="/login">
+                <Login token = {token} setToken = {setToken}/>
+            </Route>
+
+            <Route exact path="/posts">
+                <Route exact path="/posts/:postId"> 
+                    <FeaturedPost 
+                        postID = {postID} setPostID = {setPostID}
+                        featuredPost = {featuredPost} setFeaturedPost = {setFeaturedPost} 
+                    />
+                </Route>
+                <Posts 
+                    posts = {posts} setPosts= {setPosts} 
+                    token = {token} postID ={postID} 
+                    featuredPost = {featuredPost} setFeaturedPost = {setFeaturedPost} 
+                />
+            </Route> 
+
+            <Route exact path="/createform">
+                <Form 
+                    token = {token} setToken= {setToken} 
+                    posts = {posts} setPosts = {setPosts} 
+                    postID ={postID} setPostID={setPostID}/>
+            </Route>
+
+            <Route exact path= "/logout"><div>logout</div></Route>
 
             <Route  exact path="/home"> 
                 <div id="home-container">
@@ -45,6 +72,7 @@ const App = () => {
                     </div>
                 </div>
             </Route>
+
             <Route exact path="/profile">
                 <Profile />
                 {/* token={setToken} */}
