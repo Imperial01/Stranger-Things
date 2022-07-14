@@ -39,16 +39,17 @@ const App = () => {
                 <Login token = {token} setToken = {setToken}/>
             </Route>
 
-            <Route exact path="/posts">
-                <Route exact path="/posts/:postId"> 
+            <Route path="/posts">
+                <Route path="/posts/:postId"> 
                     <FeaturedPost 
                         postID = {postID} setPostID = {setPostID}
+                        token = {token} posts = {posts} setPosts = {setPosts}
                         featuredPost = {featuredPost} setFeaturedPost = {setFeaturedPost} 
                     />
                 </Route>
                 <Posts 
                     posts = {posts} setPosts= {setPosts} 
-                    token = {token} postID ={postID} 
+                    token = {token} postID ={postID} setPostID = {setPostID}
                     featuredPost = {featuredPost} setFeaturedPost = {setFeaturedPost} 
                 />
             </Route> 

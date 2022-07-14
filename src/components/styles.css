@@ -46,9 +46,8 @@
     align-items: center;
     border: solid black 2px;
     font-size: 30px;
-    width: 500px;
-    margin-left: 500px;
-    padding-top: 20px;
+    width: 50%;
+    margin-left: 25%;
 }
 
 #signup-container{
@@ -56,9 +55,10 @@
     justify-content: center;
     align-items: center;
     border: solid black 2px;
-    width: 500px;
-    height: 200px;
-    margin-left: 33.33%;
+    width: 30%;
+    padding-top: 30px;
+    padding-bottom: 30px;
+    margin-left: 35%;
 }
 
 .navlink {
@@ -165,3 +165,54 @@ input{
     align-items: center;
 }
 
+#featured-view {
+    position: fixed;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    border: 2px solid black ;
+    background-color: rgb(47, 95, 60);
+    color: rgb(249, 247, 77); 
+    height: 350px;
+    width: 700px;
+    font-size: 20px;
+    
+}
+#featured-view:hover{
+    background-color: rgb(47, 95, 60);
+}
+#title-view{
+    display: flex;
+    justify-content:center;
+    color: rgb(255, 179, 47);
+    margin-top: 0%;
+}
+
+.view-detail{
+    font-size: 25px; 
+    color:rgb(255, 87, 69)
+}
+.view-content{
+    color: rgb(249, 247, 77);
+    
+}
+
+#view-btn{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: 95.8%;
+    margin-top: 5px;
+    font-size: 15px;
+}
+
+#delete-view{
+    margin-left: 40%;
+}
+
+#post-card:hover{
+    background-color: lightgrey;
+    box-shadow: -5px 6px 16px 0px rgba(0,0,0,1);
+    -webkit-box-shadow: -5px 6px 16px 0px rgba(0,0,0,1);
+    -moz-box-shadow: -5px 6px 16px 0px rgba(0,0,0,1);
+}

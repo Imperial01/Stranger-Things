@@ -76,7 +76,7 @@ export const fetchLogin = async (userName, password) => {
   return result.data.token
 }
 
-export const fetchDelete = async(postID, token) => {
+export const fetchDelete = async(token, postID) => {
   const response = await fetch(`${APIURL}/posts/${postID}`, {
     method: "DELETE",
     headers: {
@@ -86,5 +86,10 @@ export const fetchDelete = async(postID, token) => {
   })
   const result = await response.json()
   console.log(result)
-  return result
+  if (result.success){
+    return result
+  } else{
+    alert("Unauthorized to delete")
+  }
+  
 }

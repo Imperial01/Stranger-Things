@@ -32,26 +32,13 @@ const Posts = (props) => {
     alert("Please Login")
   }
 
-  // const handleDelete = async () => {
-  //   const deletePost = await fetchDelete(postID,token);
-  //   console.log(postID)
-  //   let id = posts.map(post => {
-  //     return post._id
-  //   })
-  //   console.log(id)
-  //   return deletePost
-  // }
-  //   //error:
-  //   //message: "that route does not exist"
-  //   //name: "UndefinedRoute"
-
-
-
   const handleFeaturedPost = (event, post) => {
     // grab that post and display on screen
     console.log("test")
+    console.log(post._id)
     if(token){
       setFeaturedPost(post);
+      setPostID(post._id)
       history.push(`/posts/${post._id}`)
     }else{
       alert("please Login")

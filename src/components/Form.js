@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useHistory } from "react-router-dom";
 import { fetchCreateForm } from "../utility/api";
 
 const Form = ({token, posts, setPosts, postID, setPostID}) => {
@@ -6,16 +7,16 @@ const Form = ({token, posts, setPosts, postID, setPostID}) => {
     const [description, setdescription] = useState('')
     const [price, setprice] = useState('')
     const [location, setlocation] = useState('')
+    const history = useHistory();
 
     const handleSubmit = async (event) => {
         event.preventDefault();
-        console.log(title,description,price,location)
         if(token){
             const createForm = await fetchCreateForm(token,title,description,price,location)
             setPosts([createForm, ...posts])
-            console.log(createForm.author._id)
             setPostID(createForm.author._id)
-            console.log(postID) // this is working.
+            history.push('/posts')
+
         } else {
             alert("Please Login")
         }
