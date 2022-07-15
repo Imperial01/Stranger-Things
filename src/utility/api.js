@@ -48,14 +48,6 @@ export const fetchRegister = async (userName, password) => {
   return (result.data.token)
 }
 
-  // .then(response => response.json())
-  //   .then(result => {
-  //     console.log(result.data.token)
-  //     return (result.data.token)
-  //   })
-  //   .catch(console.error)
-
-
 
 export const fetchLogin = async (userName, password) => {
   const response = await fetch(`${APIURL}/users/login`, {
@@ -76,7 +68,7 @@ export const fetchLogin = async (userName, password) => {
   return result.data.token
 }
 
-export const fetchDelete = async(token, postID) => {
+export const fetchDelete = async (token, postID, selectedPost, posts, setPosts) => {
   const response = await fetch(`${APIURL}/posts/${postID}`, {
     method: "DELETE",
     headers: {
@@ -87,9 +79,12 @@ export const fetchDelete = async(token, postID) => {
   const result = await response.json()
   console.log(result)
   if (result.success){
-    return result
+    window.confirm('Are you sure you want to DELETE this post?')
+    const newPost = posts.filter(post => post._id !== selectedPost)
+    console.log(newPost)
+    setPosts(newPost)
   } else{
-    alert("Unauthorized to delete")
+    alert("UNAUTHORIZED TO DELETE")
   }
   
 }

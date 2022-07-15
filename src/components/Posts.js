@@ -67,7 +67,7 @@ const Posts = (props) => {
           <div id="post-card" onClick={(event) => {
             {handleFeaturedPost(event, post)}
           }}>
-            <h1>{post.title}</h1>
+            <h1 className="card-hover">{post.title}</h1>
             <p>{post.description}</p>
             <div>
               <b>Price:</b> {post.price}
@@ -78,8 +78,6 @@ const Posts = (props) => {
             <div>
               <b>Location:</b> {post.location}
             </div>
-            <br></br>
-            {/* <button onClick={handleDelete}>Delete</button> */}
           </div>
         </>  
         );

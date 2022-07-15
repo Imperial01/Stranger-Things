@@ -4,14 +4,12 @@ import { fetchDelete } from "../utility/api";
 
 
 
-const FeaturedPost = ({featuredPost,setPostID, token, postID, posts, setPosts}) => {
+const FeaturedPost = ({featuredPost, token, postID, posts, setPosts}) => {
     const {postId} = useParams();
     const history = useHistory()
 
-    const deletePost = () => {
-        fetchDelete(token, postID);
-        const newPost = posts.filter(post => post.id !== postID)
-        setPosts(newPost)
+    const deletePost = (selectedPost) => {
+        fetchDelete(token, postID, selectedPost, posts,setPosts);
         history.push('/posts')
     }
 
@@ -32,7 +30,7 @@ const FeaturedPost = ({featuredPost,setPostID, token, postID, posts, setPosts}) 
                 <br></br>
                 <b className="view-detail">Location:</b> <span className="view-content">{featuredPost.location}</span> 
                 <br></br>
-                <button id="delete-view" onClick={deletePost}>Delete Post</button>
+                <button id="delete-view" onClick={() => deletePost(postID)}>Delete Post</button>
             </div>
         </>
             

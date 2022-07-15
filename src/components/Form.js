@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
 import { fetchCreateForm } from "../utility/api";
 
-const Form = ({token, posts, setPosts, postID, setPostID}) => {
+const Form = ({token, posts, setPosts, setPostID}) => {
     const [title, setTitle] = useState('')
     const [description, setdescription] = useState('')
     const [price, setprice] = useState('')

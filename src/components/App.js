@@ -13,8 +13,10 @@ const App = () => {
     //const[user, setUser] = useState({})
     const [posts, setPosts] = useState([])
     const [token, setToken] = useState('')
+    const [userName, setUserName] = useState('');
     const [postID, setPostID] = useState(null)
     const [featuredPost, setFeaturedPost] = useState(false)
+    const [comment, setComment] = useState('')
 
     return <main> 
         <nav id ="navbar">
@@ -36,7 +38,10 @@ const App = () => {
             </Route>
 
             <Route path="/login">
-                <Login token = {token} setToken = {setToken}/>
+                <Login 
+                token = {token} setToken = {setToken}
+                userName = {userName} setUserName = {setUserName}
+                />
             </Route>
 
             <Route path="/posts">
@@ -75,8 +80,11 @@ const App = () => {
             </Route>
 
             <Route exact path="/profile">
-                <Profile />
-                {/* token={setToken} */}
+                <Profile 
+                token = {token} 
+                comment= {comment} 
+                setComment = {setComment}
+                userName = {userName}/>
             </Route>
         </Switch>
 

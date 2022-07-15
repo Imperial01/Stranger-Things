@@ -1,8 +1,7 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { fetchLogin } from "../utility/api";
-const Login = ({ token, setToken }) => {
-  const [userName, setUserName] = useState("");
+const Login = ({ token, setToken, userName, setUserName}) => {
   const [password, setPassword] = useState("");
   const [isLoggedin,setIsLoggedin] = useState(false)
   //const [loginUser, setloginUser] = useState('')
@@ -29,7 +28,7 @@ const Login = ({ token, setToken }) => {
     <>
       {isLoggedin ? (
         <>
-          <h1 id="activeAccount">Welcome {userName} !</h1>
+          <h1 id="activeAccount">Welcome Back {userName} !</h1>
         </>
       ) : (
         <>
