@@ -1,12 +1,12 @@
 import React, { useState } from "react";
-import { useHistory, useParams } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import { fetchDelete } from "../utility/api";
 import { fetchMessage } from "../utility/api";
 
 
 
 const FeaturedPost = ({featuredPost, token, postID, posts, setPosts, userName,setSearch}) => {
-    const {postId} = useParams();
+    // const {postId} = useParams();
     const history = useHistory()
     const [comment, setComment] = useState('')
 

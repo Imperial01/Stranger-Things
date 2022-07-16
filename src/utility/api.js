@@ -51,7 +51,13 @@ export const fetchRegister = async (userName, password) => {
     
   })
   const result = await response.json();
-  return (result.data.token)
+  console.log(result)
+  if(!result.success){
+    alert(result.error.message)
+  }else{
+    return (result.data.token)
+  }
+  
 }
 
 
@@ -71,7 +77,7 @@ export const fetchLogin = async (userName, password) => {
 
   const result = await response.json()
   if(!result.success){
-    alert(result.error.message) 
+    alert(result.error.message)
   }else {
   return result.data.token
   }

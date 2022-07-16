@@ -1,12 +1,11 @@
 import React, { useEffect, useState } from "react";
-import { Link, useHistory } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import { fetchUserData } from "../utility/api";
 
 
 
 const Profile = ({ token, userName, posts,setSearch }) => {
     const [sentMessages, setSentMessages] = useState([])
-    const [received, setReceived] = useState([])
     const history = useHistory();
 
     const dataMessage = async () => {
