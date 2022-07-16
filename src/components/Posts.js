@@ -3,15 +3,15 @@ import { Link, useHistory } from "react-router-dom";
 import { fetchAllPost } from "../utility/api";
 
 const Posts = (props) => {
-  const [search, setSearch] = useState('');
   const {
     posts, setPosts, 
     postID, setPostID, token, 
-    featuredPost, setFeaturedPost} = props
+    featuredPost, setFeaturedPost,search, setSearch} = props
     
   const history = useHistory();
+
   const post = async () => {
-    setPosts(await fetchAllPost())
+    setPosts(await fetchAllPost(token))
   }
 
   useEffect(() => {
@@ -34,8 +34,6 @@ const Posts = (props) => {
 
   const handleFeaturedPost = (event, post) => {
     // grab that post and display on screen
-    console.log("test")
-    console.log(post._id)
     if(token){
       setFeaturedPost(post);
       setPostID(post._id)

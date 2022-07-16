@@ -1,8 +1,14 @@
 const cohortName = "2204-FTB-MT-WEB-PT";
 const APIURL = `https://strangers-things.herokuapp.com/api/${cohortName}`;
 
-export const fetchAllPost = async () => {
-  const response = await fetch(`${APIURL}/posts`);
+export const fetchAllPost = async (token) => {
+  const response = await fetch(`${APIURL}/posts`, {
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${token}`
+    }
+  })
   const result = await response.json();
     return (result.data.posts)
   };
@@ -64,8 +70,12 @@ export const fetchLogin = async (userName, password) => {
   })
 
   const result = await response.json()
-  console.log(result.data.token)
+  if(!result.success){
+    alert(result.error.message) 
+  }else {
   return result.data.token
+  }
+  
 }
 
 export const fetchDelete = async (token, postID, selectedPost, posts, setPosts) => {
@@ -86,5 +96,40 @@ export const fetchDelete = async (token, postID, selectedPost, posts, setPosts) 
   } else{
     alert("UNAUTHORIZED TO DELETE")
   }
+  
+}
+
+export const fetchMessage = async (postID, token, comment) => {
+  const response = await fetch(`${APIURL}/posts/${postID}/messages`, {
+    method: "POST",
+    headers: {
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${token}`
+    },
+    body: JSON.stringify({
+      message: {
+        content: comment
+      }
+    })
+  })
+
+  const result = await response.json();
+  console.log(result)
+  return result.data.message.content
+  
+}
+
+
+export const fetchUserData = async (token) =>{
+  const response = await fetch(`${APIURL}/users/me`, {
+    method: "GET",
+    headers: {
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${token}`
+    }
+  })
+  const result = await response.json();
+  console.log(result.data)
+  return result.data.messages
   
 }

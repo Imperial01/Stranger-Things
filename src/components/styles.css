@@ -11,6 +11,19 @@
     margin-top: 5em;
     font-size: 50px;
 }
+
+#profile-title{
+    display: flex;
+    justify-content: center;
+    margin-top: 5%;
+    text-decoration: none;
+    font-size: 30px;
+    color: black;
+}
+#profile-title:hover{
+    color: red;
+    text-decoration: underline;
+}
 #links{
     display: flex;
     justify-content: center;
@@ -178,7 +191,7 @@ input{
     border: 2px solid black ;
     background-color: rgb(47, 95, 60);
     color: rgb(249, 247, 77); 
-    height: 350px;
+    height: 550px;
     width: 700px;
     font-size: 20px;
     
@@ -211,9 +224,6 @@ input{
     font-size: 15px;
 }
 
-#delete-view{
-    margin-left: 40%;
-}
 
 #post-card:hover{
     background-color: lightgrey;
@@ -225,4 +235,45 @@ input{
 .profile-title{
     display: flex;
     justify-content: center;
+}
+
+#comment-container{
+    display:flex;
+    margin-top: 20px;
+    margin-left: 1em;
+    overflow: scroll;
+    flex-wrap: wrap;
+    background-color: #ffffff;
+    color: #5300f8;
+    font-size: 16px;
+    height: 150px;
+    width: 650px;
+    border: solid black 2px;
+    margin-right: 0%;
+    
+}
+#delete-view{
+    display: flex;
+    margin-left: 14em;
+    margin-top: 20px;
+    font-size: 20px;
+    color:red
+
+}
+#feature-footer{
+    display: flex;
+    justify-content: end;
+    margin-right: 31px;
+    height: 20px;
+    gap: 2px
+}
+#comment-input{
+    width: 595px
+}
+
+#message-card{
+    border-bottom: solid black 2px
+}
+#sender{
+    font-size: 25px;
 }

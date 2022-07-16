@@ -19,7 +19,9 @@ const Login = ({ token, setToken, userName, setUserName}) => {
     const loggedToken = await fetchLogin(userName, password); // fetching login token
     setToken(loggedToken);
     setUserName(userName);
-    setIsLoggedin(true)
+    if(loggedToken){
+      setIsLoggedin(true)
+    }
 
   };
   // once i log in, I want my username to show and a create a button that sends me to my profile.

@@ -15,7 +15,8 @@ const App = () => {
     const [token, setToken] = useState('')
     const [userName, setUserName] = useState('');
     const [postID, setPostID] = useState(null)
-    const [featuredPost, setFeaturedPost] = useState(false)
+    const [featuredPost, setFeaturedPost] = useState([])
+    const [search, setSearch] = useState('')
     const [comment, setComment] = useState('')
 
     return <main> 
@@ -49,13 +50,15 @@ const App = () => {
                     <FeaturedPost 
                         postID = {postID} setPostID = {setPostID}
                         token = {token} posts = {posts} setPosts = {setPosts}
-                        featuredPost = {featuredPost} setFeaturedPost = {setFeaturedPost} 
+                        featuredPost = {featuredPost} setFeaturedPost = {setFeaturedPost}
+                        userName = {userName} setSearch = {setSearch}
                     />
                 </Route>
                 <Posts 
                     posts = {posts} setPosts= {setPosts} 
                     token = {token} postID ={postID} setPostID = {setPostID}
                     featuredPost = {featuredPost} setFeaturedPost = {setFeaturedPost} 
+                    search ={search} setSearch = {setSearch} 
                 />
             </Route> 
 
@@ -80,11 +83,19 @@ const App = () => {
             </Route>
 
             <Route exact path="/profile">
+                {
+                token? 
+
                 <Profile 
-                token = {token} 
-                comment= {comment} 
-                setComment = {setComment}
-                userName = {userName}/>
+                    token = {token} 
+                    userName = {userName}
+                    postID = {postID} setSearch = {setSearch}/> : 
+                    <div>
+                        <Link to="/login" id="profile-title">Please Log In</Link>
+                    </div>
+
+                }
+                
             </Route>
         </Switch>
 
