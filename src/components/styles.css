@@ -272,8 +272,20 @@ input{
 }
 
 #message-card{
-    border-bottom: solid black 2px
+    border-bottom: solid black 2px;
+    background-color: rgba(70, 51, 145, 0.16);
 }
 #sender{
     font-size: 25px;
+}
+
+.inbox-card{
+    background-color: rgba(173, 216, 230, 0.537);
+    height: 55px
+}
+#view-post{
+    color:rgb(249, 12, 12)
+}
+#view-post:hover{
+    cursor: pointer
 }

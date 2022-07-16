@@ -2,6 +2,8 @@ import React, { useEffect, useState } from "react";
 import { Link, useHistory } from "react-router-dom";
 import { fetchUserData } from "../utility/api";
 
+
+
 const Profile = ({ token, userName, posts,setSearch }) => {
     const [sentMessages, setSentMessages] = useState([])
     const [received, setReceived] = useState([])
@@ -13,10 +15,10 @@ const Profile = ({ token, userName, posts,setSearch }) => {
         return sentMessages
     }
 
-    const handleClick = (event,title) => {
+    const handleClick = (title) => {
         console.log(dataMessage())
         console.log(title)
-        setSearch(event, title)
+        setSearch(title)
         history.push(`/posts`)
     }
 
@@ -29,7 +31,7 @@ const Profile = ({ token, userName, posts,setSearch }) => {
     
        <>
           <h1 className="profile-title">WELCOME {userName}</h1>
-          <h2 className="profile-title">Received Messages</h2>
+          <h2 className="profile-title">PRIMARY INBOX</h2>
           {
             sentMessages.map(message =>{
                 console.log(message)
@@ -37,11 +39,12 @@ const Profile = ({ token, userName, posts,setSearch }) => {
                     {
                     userName !== message.fromUser.username ?
                     <article id="message-card">
-                       <div id="sender">From: {message.fromUser.username}</div>
-                       <br></br>
-                       <div id="content-message">{message.content} </div>
-                       <br></br>
-                       <a onClick={() => handleClick(message.post.title)}>View Post</a>
+                        <h1 onClick={() => handleClick(message.post.title)}>Post: {message.post.title}</h1>
+                        <div id="sender" className="inbox-card">From: {message.fromUser.username}</div>
+
+                        <div id="content-message" className="inbox-card">{message.content} </div>
+                        <br></br>
+                        <a id= "view-post" onClick={() => handleClick(message.post.title)} style={{fontSize: "20px"}}>-View Post-</a>
                     </article>
                      // fix click handler, not sending to correct post.
                     : null

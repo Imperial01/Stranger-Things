@@ -89,7 +89,7 @@ export const fetchDelete = async (token, postID, selectedPost, posts, setPosts) 
   const result = await response.json()
   console.log(result)
   if (result.success){
-    window.confirm('Are you sure you want to DELETE this post?')
+    window.confirm('Are you sure you want to DELETE this post?') //BUG: still deletes when pressing NO
     const newPost = posts.filter(post => post._id !== selectedPost)
     console.log(newPost)
     setPosts(newPost)
